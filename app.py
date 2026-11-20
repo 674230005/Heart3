@@ -24,19 +24,32 @@ TARGET = "HeartDisease"
 
 st.markdown("""\n<style>
 .stApp {background:linear-gradient(135deg,#07111f,#0b1d31 55%,#102941);color:#e8f3ff}
+[data-testid="stHeader"]{background:transparent}
 [data-testid="stSidebar"]{background:#081626;border-right:1px solid #183652}
 [data-testid="stMetric"]{background:#112840;border:1px solid #1e4667;padding:14px;border-radius:15px}
 [data-testid="stMetricLabel"]{color:#9dbbd4!important}[data-testid="stMetricValue"]{color:#f1f8ff!important}
 .hero{background:linear-gradient(120deg,#103653,#0d617c);border:1px solid #226184;padding:1.3rem 1.5rem;border-radius:20px;margin-bottom:1rem}
 .hero h1{margin:0;color:#effaff;font-size:2.2rem}.hero p{color:#b9e5f7;margin:.35rem 0 0}
-.stButton>button{border-radius:12px;border:1px solid #45c5f4;background:#087fa8;color:white;font-weight:700}
-.stButton>button:hover{background:#0e9ac8;border-color:#6bd8ff}
-div[data-testid="stTabs"] button{color:#ffffff!important}
-/* Improve contrast: keep interface text bright and readable */
+.stButton>button, [data-testid="stDownloadButton"]>button{border-radius:12px;border:1px solid #45c5f4;background:#087fa8;color:#ffffff!important;font-weight:700}
+.stButton>button:hover, [data-testid="stDownloadButton"]>button:hover{background:#0e9ac8;border-color:#6bd8ff;color:#ffffff!important}
+.stButton>button *, [data-testid="stDownloadButton"]>button *{color:#ffffff!important}
+div[data-testid="stTabs"] button, div[data-testid="stTabs"] button *{color:#ffffff!important}
+/* Improve contrast: keep interface text bright on dark areas and dark on light inputs/alerts */
 .stApp, .stApp p, .stApp label, .stApp span, .stApp li, .stApp small, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {color:#f5f9ff;}
 [data-testid="stSidebar"] *, [data-testid="stWidgetLabel"] *, [data-testid="stMarkdownContainer"] * {color:#f5f9ff!important}
-[data-testid="stDataFrame"] *, [data-testid="stTable"] * {color:#f5f9ff!important}
-input, textarea, select {color:#ffffff!important}
+[data-testid="stFileUploaderDropzone"]{background:#0f263d!important;border:1px dashed #45c5f4!important}
+[data-testid="stFileUploaderDropzone"] *, [data-testid="stFileUploaderFile"] *{color:#f5f9ff!important}
+[data-testid="stFileUploaderDropzone"] button{background:#087fa8!important;border:1px solid #45c5f4!important;color:#ffffff!important}
+[data-testid="stAlert"], [data-testid="stNotification"]{color:#0f172a!important}
+[data-testid="stAlert"] *, [data-testid="stNotification"] *{color:#0f172a!important}
+[data-testid="stDataFrame"], [data-testid="stTable"]{background:#ffffff!important;border-radius:10px}
+[data-testid="stDataFrame"] *, [data-testid="stTable"] *{color:#0f172a!important}
+input, textarea, select, [data-baseweb="select"] > div, [data-baseweb="input"] > div, [data-baseweb="base-input"]{background:#ffffff!important;color:#0f172a!important}
+[data-baseweb="select"] *, [data-baseweb="input"] *, [data-baseweb="base-input"] *{color:#0f172a!important}
+[data-baseweb="popover"], [data-baseweb="popover"] > div, [role="listbox"], [role="option"]{background:#ffffff!important;color:#0f172a!important}
+[data-baseweb="popover"] *, [role="listbox"] *, [role="option"] *{color:#0f172a!important}
+[data-testid="stNumberInputStepDown"], [data-testid="stNumberInputStepUp"]{background:#e2e8f0!important;color:#0f172a!important}
+[data-testid="stNumberInputStepDown"] *, [data-testid="stNumberInputStepUp"] *{color:#0f172a!important;fill:#0f172a!important}
 .profile-wrap{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,#0e263c,#123d59);border:1px solid #245475;border-radius:18px;padding:12px 16px;margin-bottom:14px}
 .profile-photo{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid #58c9f5;flex-shrink:0}
 .profile-info{display:flex;flex-direction:column;gap:2px}
