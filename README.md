@@ -30,3 +30,7 @@ streamlit run app.py
 
 
 > Educational demonstration only. This app is not a medical diagnostic tool.
+
+
+### Profile header
+The app includes a compact profile header for Pawaret Phakdeecharoen (Information Technology, student ID 674230005) with the supplied profile photo.

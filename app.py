@@ -10,6 +10,15 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 
 st.set_page_config(page_title="HeartCare AI | KNN", page_icon="🫀", layout="wide")
 
+from pathlib import Path
+import base64
+
+PROFILE_PATH = Path(__file__).parent / "assets" / "profile.jpg"
+try:
+    PROFILE_B64 = base64.b64encode(PROFILE_PATH.read_bytes()).decode("utf-8")
+except Exception:
+    PROFILE_B64 = ""
+
 FEATURES = ["Age", "Sex", "ChestPainType", "RestingBP", "Cholesterol", "FastingBS", "RestingECG", "MaxHR", "ExerciseAngina", "Oldpeak", "ST_Slope"]
 TARGET = "HeartDisease"
 
@@ -22,7 +31,18 @@ st.markdown("""\n<style>
 .hero h1{margin:0;color:#effaff;font-size:2.2rem}.hero p{color:#b9e5f7;margin:.35rem 0 0}
 .stButton>button{border-radius:12px;border:1px solid #45c5f4;background:#087fa8;color:white;font-weight:700}
 .stButton>button:hover{background:#0e9ac8;border-color:#6bd8ff}
-div[data-testid="stTabs"] button{color:#c4e4f7}
+div[data-testid="stTabs"] button{color:#ffffff!important}
+/* Improve contrast: keep interface text bright and readable */
+.stApp, .stApp p, .stApp label, .stApp span, .stApp li, .stApp small, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {color:#f5f9ff;}
+[data-testid="stSidebar"] *, [data-testid="stWidgetLabel"] *, [data-testid="stMarkdownContainer"] * {color:#f5f9ff!important}
+[data-testid="stDataFrame"] *, [data-testid="stTable"] * {color:#f5f9ff!important}
+input, textarea, select {color:#ffffff!important}
+.profile-wrap{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,#0e263c,#123d59);border:1px solid #245475;border-radius:18px;padding:12px 16px;margin-bottom:14px}
+.profile-photo{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid #58c9f5;flex-shrink:0}
+.profile-info{display:flex;flex-direction:column;gap:2px}
+.profile-name{font-size:1.05rem;font-weight:750;color:#fff!important}
+.profile-major{font-size:.88rem;color:#d9efff!important}
+.profile-id{font-size:.82rem;color:#c2d9ee!important}
 </style>
 """, unsafe_allow_html=True)
 
@@ -46,6 +66,10 @@ def clean_data(df):
     if clean[TARGET].nunique() < 2:
         return clean, ["คอลัมน์ HeartDisease ต้องมีอย่างน้อย 2 กลุ่ม"]
     return clean, []
+
+if PROFILE_B64:
+    profile_html = f'<div class="profile-wrap"><img class="profile-photo" src="data:image/jpeg;base64,{PROFILE_B64}"/><div class="profile-info"><div class="profile-name">ปวเรศ ภักดีเจริญ</div><div class="profile-major">Information Technology</div><div class="profile-id">674230005</div></div></div>'
+    st.markdown(profile_html, unsafe_allow_html=True)
 
 st.markdown('<div class="hero"><h1>🫀 HeartCare AI</h1><p>Heart disease classification • Machine Learning with K-Nearest Neighbors (KNN)</p></div>', unsafe_allow_html=True)
 
