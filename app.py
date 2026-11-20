@@ -24,7 +24,8 @@ TARGET = "HeartDisease"
 
 st.markdown("""\n<style>
 .stApp {background:linear-gradient(135deg,#07111f,#0b1d31 55%,#102941);color:#e8f3ff}
-[data-testid="stHeader"]{background:transparent}
+header[data-testid="stHeader"]{background:rgba(7,17,31,.85)!important}
+header[data-testid="stHeader"] *{color:#f5f9ff!important;fill:#f5f9ff!important}
 [data-testid="stSidebar"]{background:#081626;border-right:1px solid #183652}
 [data-testid="stMetric"]{background:#112840;border:1px solid #1e4667;padding:14px;border-radius:15px}
 [data-testid="stMetricLabel"]{color:#9dbbd4!important}[data-testid="stMetricValue"]{color:#f1f8ff!important}
@@ -34,16 +35,32 @@ st.markdown("""\n<style>
 .stButton>button:hover, [data-testid="stDownloadButton"]>button:hover{background:#0e9ac8;border-color:#6bd8ff;color:#ffffff!important}
 .stButton>button *, [data-testid="stDownloadButton"]>button *{color:#ffffff!important}
 div[data-testid="stTabs"] button, div[data-testid="stTabs"] button *{color:#ffffff!important}
-/* Improve contrast: keep interface text bright on dark areas and dark on light inputs/alerts */
+/* Improve contrast: bright text on dark surfaces, dark text on light surfaces */
 .stApp, .stApp p, .stApp label, .stApp span, .stApp li, .stApp small, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {color:#f5f9ff;}
 [data-testid="stSidebar"] *, [data-testid="stWidgetLabel"] *, [data-testid="stMarkdownContainer"] * {color:#f5f9ff!important}
-[data-testid="stFileUploaderDropzone"]{background:#0f263d!important;border:1px dashed #45c5f4!important}
-[data-testid="stFileUploaderDropzone"] *, [data-testid="stFileUploaderFile"] *{color:#f5f9ff!important}
-[data-testid="stFileUploaderDropzone"] button{background:#087fa8!important;border:1px solid #45c5f4!important;color:#ffffff!important}
-[data-testid="stAlert"], [data-testid="stNotification"]{color:#0f172a!important}
-[data-testid="stAlert"] *, [data-testid="stNotification"] *{color:#0f172a!important}
+/* Inline code pills */
+.stApp code, [data-testid="stMarkdownContainer"] code, code{background-color:#13314d!important;color:#7dd3fc!important;border:1px solid #245475!important;border-radius:6px!important;padding:2px 6px!important}
+/* File uploader dropzone & uploaded file item */
+section[data-testid="stFileUploadDropzone"], [data-testid="stFileUploadDropzone"],
+section[data-testid="stFileUploaderDropzone"], [data-testid="stFileUploaderDropzone"],
+[data-testid="stFileUploader"] section{background-color:#0f263d!important;border:1px dashed #45c5f4!important;border-radius:12px!important}
+section[data-testid="stFileUploadDropzone"] *, [data-testid="stFileUploadDropzone"] *,
+section[data-testid="stFileUploaderDropzone"] *, [data-testid="stFileUploaderDropzone"] *,
+[data-testid="stFileUploader"] section *, [data-testid="stFileUploaderFile"] *{color:#f5f9ff!important;fill:#f5f9ff!important}
+section[data-testid="stFileUploadDropzone"] button, [data-testid="stFileUploadDropzone"] button,
+section[data-testid="stFileUploaderDropzone"] button, [data-testid="stFileUploaderDropzone"] button,
+[data-testid="stFileUploader"] section button{background-color:#087fa8!important;border:1px solid #45c5f4!important;color:#ffffff!important}
+/* Alert boxes (st.info, st.warning, st.error, st.success) */
+div[role="alert"], div[role="alert"] *,
+[data-testid="stAlert"], [data-testid="stAlert"] *,
+[data-testid="stAlertContainer"], [data-testid="stAlertContainer"] *,
+[data-testid="stNotification"], [data-testid="stNotification"] *,
+div[role="alert"] [data-testid="stMarkdownContainer"] *,
+[data-testid="stAlertContainer"] [data-testid="stMarkdownContainer"] *{color:#0f172a!important}
+/* Tables & Dataframes */
 [data-testid="stDataFrame"], [data-testid="stTable"]{background:#ffffff!important;border-radius:10px}
-[data-testid="stDataFrame"] *, [data-testid="stTable"] *{color:#0f172a!important}
+[data-testid="stTable"] *{color:#0f172a!important}
+/* Form inputs & dropdowns */
 input, textarea, select, [data-baseweb="select"] > div, [data-baseweb="input"] > div, [data-baseweb="base-input"]{background:#ffffff!important;color:#0f172a!important}
 [data-baseweb="select"] *, [data-baseweb="input"] *, [data-baseweb="base-input"] *{color:#0f172a!important}
 [data-baseweb="popover"], [data-baseweb="popover"] > div, [role="listbox"], [role="option"]{background:#ffffff!important;color:#0f172a!important}
